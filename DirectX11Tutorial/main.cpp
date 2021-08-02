@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include <sstream>
 #include "WindowsMessageMap.h"
 
 LRESULT CALLBACK Wndproc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -23,9 +24,23 @@ LRESULT CALLBACK Wndproc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             SetWindowTextA(hWnd, "DangerField");
         }
         break;
-    default:
+    case WM_CHAR:
+        {
+            static std::string title;
+            title.push_back((char)wParam);
+            SetWindowTextA(hWnd, title.c_str());
+        }
+        break;
+    case WM_LBUTTONDOWN:
+        {
+            POINTS pt = MAKEPOINTS(lParam);
+            std::ostringstream oss;
+            oss << "(" << pt.x << "," << pt.y << ")";
+            SetWindowText(hWnd, oss.str().c_str());
+        }
         break;
     }
+
 
     return DefWindowProc(hWnd, msg, wParam, lParam);
 }
