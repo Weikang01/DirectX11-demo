@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <sstream>
 #include "WindowsMessageMap.h"
+#include "Window.h"
 
 LRESULT CALLBACK Wndproc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -52,34 +53,8 @@ WinMain(
     HINSTANCE hPrevInstance,
     PSTR lpCmdLine, int nCmdShow)
 {
-
-    const auto pClassName = "DirectX11 Tutorial";
-    // Register window class
-    WNDCLASSEXA wc = { 0 };
-    wc.cbSize = sizeof(wc);
-    wc.style = CS_OWNDC;
-    wc.lpfnWndProc = Wndproc;
-    wc.cbClsExtra = 0;
-    wc.cbWndExtra = 0;
-    wc.hInstance = hInstance;
-    wc.hIcon = nullptr;
-    wc.hCursor = nullptr;
-    wc.hbrBackground = nullptr;
-    wc.lpszMenuName = nullptr;
-    wc.lpszClassName = pClassName;
-    wc.hIconSm = nullptr;
-    RegisterClassExA(&wc);
-
-    // create windle instance
-    HWND hWnd = CreateWindowExA(
-        0, pClassName, 
-        "DirectX11 Tutorial Window",
-        WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, 
-        200, 200, 640, 480, 
-        nullptr, nullptr, hInstance, nullptr);
-
-    // show the window
-    ShowWindow(hWnd, SW_SHOW);
+    Window wnd(600, 400, "DirectX11 Tutorial");
+    Window wnd2(600, 400, "DirectX11 Tutorial");
 
     // message pump
     MSG msg;
