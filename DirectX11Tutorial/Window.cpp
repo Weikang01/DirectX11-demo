@@ -12,7 +12,7 @@ Window::Exception::Exception(int line, const char* file, HRESULT hr) noexcept
 const char* Window::Exception::what() const noexcept
 {
     std::ostringstream oss;
-    oss << GetType() << std::endl << "[Error Code] " << GetErrorCode() << std::endl << "[Description] " << GetErrorString() << std::endl << GetOriginString();
+    oss << GetType() << std::endl << "[Error Code] " << GetErrorCode() << std::endl << "[Description] " << GetErrorDescription() << std::endl << GetOriginString();
     whatBuffer = oss.str();
     return whatBuffer.c_str();
 }
@@ -38,6 +38,11 @@ std::string Window::Exception::TranslateErrorCode(HRESULT hr) noexcept
 HRESULT Window::Exception::GetErrorCode() const noexcept
 {
     return hr;
+}
+
+std::string Window::Exception::GetErrorDescription() const noexcept
+{
+    return Exception::TranslateErrorCode(hr);
 }
 
 Window::WindowClass::WindowClass() noexcept

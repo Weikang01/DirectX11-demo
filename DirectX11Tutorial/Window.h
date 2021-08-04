@@ -13,6 +13,7 @@ public:
 		virtual const char* GetType() const noexcept;
 		static std::string TranslateErrorCode(HRESULT hr) noexcept;
 		HRESULT GetErrorCode() const noexcept;
+		std::string GetErrorDescription() const noexcept;
 	private:
 		HRESULT hr;
 	};
@@ -47,3 +48,4 @@ private:
 };
 
 #define WND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
+#define WND_LAST_EXCEPT() Window::Exception(__LINE__, __FILE__, GetLastError())
