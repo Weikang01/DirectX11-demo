@@ -13,7 +13,6 @@ public:
 		virtual const char* GetType() const noexcept;
 		static std::string TranslateErrorCode(HRESULT hr) noexcept;
 		HRESULT GetErrorCode() const noexcept;
-		std::string GetErrorString() const noexcept;
 	private:
 		HRESULT hr;
 	};
@@ -47,3 +46,4 @@ private:
 	HWND hWnd;
 };
 
+#define WND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
