@@ -13,11 +13,6 @@ WinMain(
     {
         Window wnd(600, 400, "DirectX11 Tutorial");
 
-        //throw WND_EXCEPT(ERROR_ABIOS_ERROR);
-        //throw std::runtime_error("trash");
-        //throw 123123;
-
-
         // message pump
         MSG msg;
         BOOL gResult;
