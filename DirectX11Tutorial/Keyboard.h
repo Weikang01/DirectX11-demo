@@ -73,3 +73,11 @@ private:
 	std::queue<char> charbuffer;
 };
 
+template<typename T>
+inline void Keyboard::TrimBuffer(std::queue<T>& buffer) noexcept
+{
+	while (buffer.size() > bufferSize)
+	{
+		buffer.pop();
+	}
+}
