@@ -20,6 +20,10 @@ WinMain(
         {
             TranslateMessage(&msg);
             DispatchMessageA(&msg);
+            if (wnd.kbd.KeyIsPressed(VK_MENU))
+            {
+                MessageBoxA(nullptr, "Something Happening", "Space Key Was Pressed", MB_OK | MB_ICONEXCLAMATION);
+            }
         }
 
         if (gResult == -1)
