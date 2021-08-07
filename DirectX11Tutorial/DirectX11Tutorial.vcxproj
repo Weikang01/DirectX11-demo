@@ -148,6 +148,7 @@
     <ClCompile Include="baseException.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowsMessageMap.cpp" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="baseException.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="lib_Win.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="resource2.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowsMessageMap.h" />

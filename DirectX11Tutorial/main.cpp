@@ -20,9 +20,21 @@ WinMain(
         {
             TranslateMessage(&msg);
             DispatchMessageA(&msg);
-            if (wnd.kbd.KeyIsPressed(VK_MENU))
+            while (!wnd.mouse.IsEmpty())
             {
-                MessageBoxA(nullptr, "Something Happening", "Space Key Was Pressed", MB_OK | MB_ICONEXCLAMATION);
+                const auto e = wnd.mouse.Read();
+                switch (e.GetType())
+                {
+                case Mouse::Event::Type::Leave:
+                    wnd.SetTitle("Gone!");
+                    break;
+                case Mouse::Event::Type::Move:
+                {
+                    std::ostringstream oss;
+                    oss << "Mouse moved to (" << e.GetPosX() << "," << e.GetPosY() << ")";
+                    wnd.SetTitle(oss.str());
+                }
+                }
             }
         }
 
