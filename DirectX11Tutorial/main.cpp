@@ -2,6 +2,7 @@
 #include <sstream>
 #include "WindowsMessageMap.h"
 #include "Window.h"
+#include "App.h"
 
 int CALLBACK 
 WinMain(
@@ -11,41 +12,7 @@ WinMain(
 {
     try
     {
-        Window wnd(600, 400, "DirectX11 Tutorial");
-
-        // message pump
-        MSG msg;
-        BOOL gResult;
-        while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0)
-        {
-            TranslateMessage(&msg);
-            DispatchMessageA(&msg);
-            while (!wnd.mouse.IsEmpty())
-            {
-                const auto e = wnd.mouse.Read();
-                switch (e.GetType())
-                {
-                case Mouse::Event::Type::Leave:
-                    wnd.SetTitle("Gone!");
-                    break;
-                case Mouse::Event::Type::Move:
-                {
-                    std::ostringstream oss;
-                    oss << "Mouse moved to (" << e.GetPosX() << "," << e.GetPosY() << ")";
-                    wnd.SetTitle(oss.str());
-                }
-                }
-            }
-        }
-
-        if (gResult == -1)
-        {
-            return -1;
-        }
-        else
-        {
-            return msg.wParam;
-        }
+        return App{}.run();
     }
     catch (const baseException& e)
     {

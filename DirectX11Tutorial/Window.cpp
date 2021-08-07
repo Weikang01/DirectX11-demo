@@ -230,9 +230,6 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
         mouse.OnWheelDelta(pt.x, pt.y, delta);
         break;
     }
-
-
-
     }
     return DefWindowProcA(hWnd, msg, wParam, lParam);
 }
