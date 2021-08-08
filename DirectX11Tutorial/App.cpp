@@ -1,28 +1,26 @@
 #include "App.h"
+#include <iomanip>
 
 App::App()
 	:wnd(800, 600, "DirectX11 Tutorial")
-{
-}
+{}
 
 int App::run()
 {
-	MSG msg;
-	BOOL gResult;
-	while ((gResult = GetMessageA(&msg, nullptr, 0, 0)) > 0)
+	while (true)
 	{
-		TranslateMessage(&msg);
-		DispatchMessageA(&msg);
-
+		if (const auto ecode = Window::ProcessMessages())
+		{
+			return *ecode;
+		}
 		DoFrame();
 	}
-	if (gResult == -1)
-	{
-		throw WND_LAST_EXCEPT();
-	}
-	return msg.wParam;
 }
 
 void App::DoFrame()
 {
+	const float t = timer.Peek();
+	std::ostringstream oss;
+	oss << "Time elapsed: " << std::setprecision(1) << std::fixed << t << "s";
+	wnd.SetTitle(oss.str());
 }
